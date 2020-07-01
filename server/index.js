@@ -72,7 +72,7 @@ wsServer.on('request', function(request) {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
   console.log("The web server is up and running");
