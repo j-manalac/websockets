@@ -1,3 +1,4 @@
+const express = require('express');
 const webSocketsServerPort = 8000;
 const webSocketServer = require('websocket').server;
 const http = require('http');
@@ -7,7 +8,7 @@ server.listen(webSocketsServerPort);
 const wsServer = new webSocketServer({
   httpServer: server
 });
-
+const app = express();
 // Generates unique ID for every new connection
 const getUniqueID = () => {
   const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -69,4 +70,10 @@ wsServer.on('request', function(request) {
     delete users[userID];
     sendMessage(JSON.stringify(json));
   });
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("The web server is up and running");
 });
